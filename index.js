@@ -2,54 +2,102 @@ const toDoList = localStorage.getItem('myToDo') ? JSON.parse(localStorage.getIte
 
 const addToDoForm = document.getElementById('addToDo')
 const incompleteToDo = document.getElementById('incompleteToDo')
-const copletedToDo = document.getElementById('completedToDo')
+const completedToDo = document.getElementById('completedToDo')
 const formTitle = document.getElementById('toDoTitle')
 const formDescription = document.getElementById('toDoDescription')
+const openIcon = document.getElementById('openModalIcon')
+const closeIcon = document.getElementById('closeModalIcon')
+const modal = document.getElementById('formModal')
+const deleteIcon = document.getElementsByClassName('ri-delete-bin-2-fill')
 
+openIcon.addEventListener('click', () => {
+    modal.classList.add('activeModal')
+})
 
-const addListItem = (arr, parrent) => {
+const closeModal = () => {
+    modal.classList.remove('activeModal')
+}
+
+const changeStatus = (item) => {
+    const index = toDoList.findIndex(element => item.title === element.title)
+    const found = toDoList.find(element => item.title === element.title)
+    toDoList.splice(index, 1, found)
+    localStorage.setItem('myToDo', JSON.stringify(toDoList))
+}
+
+closeIcon.addEventListener('click', closeModal)     
+
+const addListItem = (item) => {
     const listTitle = document.createElement('div')
-    const listDescription = document.createElement('div')
     const listCheck= document.createElement('input')
-    const wrapper = document.createElement('div')
-    const toDoDetailsWrapper = document.createElement('div')
+    const deleteIcon = document.createElement('i')
+    deleteIcon.classList.add('ri-delete-bin-2-fill')
+    deleteIcon.addEventListener('click', () =>{
+        deleteToDo(item)
+    })
+    /* deleteIcon.setAttribute('id', item.title)
+ */
 
+    listCheck.checked = item.checked
+    const wrapper = document.createElement('div')
+    const icons = document.createElement('span')
+    const details = document.createElement('div')
+    details.classList.add('toDoDetails')
     wrapper.classList.add('toDoWrapper')
     listCheck.setAttribute('type', 'checkbox')
-    arr.forEach((item) => {
-        listTitle.innerText = item.title
-        listDescription.innerText = item.description
-        toDoDetailsWrapper.appendChild(listTitle)
-        toDoDetailsWrapper.appendChild(listDescription)
-        wrapper.appendChild(listCheck)
-        wrapper.appendChild(toDoDetailsWrapper)
+    listTitle.innerText = item.title
+    icons.appendChild(deleteIcon)
+    details.appendChild(listCheck)
+    details.appendChild(listTitle)
+    wrapper.appendChild(details)
+    wrapper.appendChild(icons)
 
+    const parrent = item.checked ? completedToDo : incompleteToDo
 
-        parrent.appendChild(wrapper)
-        listCheck.addEventListener('click', (event) => {
-            if(event.target.checked) {
-                copletedToDo.appendChild(wrapper)
-            } else {
+    parrent.appendChild(wrapper)
+    listCheck.addEventListener('click', (event) => {
+        if(event.target.checked) {
+                completedToDo.appendChild(wrapper)
+        } else {
                 incompleteToDo.appendChild(wrapper)
-            }
-        })
-        
+        }
+        item.checked = !item.checked
+        changeStatus(item)
     })
 }
 
+const renderList =() => {
+    incompleteToDo.innerText = ' '
+    completedToDo.innerHTML = ' '
+    
+    toDoList.forEach(item => addListItem(item))
+}
 
-addListItem(toDoList, incompleteToDo)
+function deleteToDo (item) {
+    const index = toDoList.findIndex(element => item.title === element.title)
+    toDoList.splice(index, 1)
+    localStorage.setItem('myToDo', JSON.stringify(toDoList))
+    renderList()
+}
+
+renderList()
 
 const addToDo = (event) => {
     event.preventDefault()
     const data = new FormData(event.target)
     const toDo = Object.fromEntries(data.entries())
+    toDo.checked = false
+    const found = toDoList.find(item => item.title === toDo.title)
+    if(found) return alert('You already have this to do')
     toDoList.push(toDo)
     localStorage.setItem('myToDo', JSON.stringify(toDoList))
-    addListItem(toDoList, incompleteToDo)
+    addListItem(toDo)
     formTitle.value =''
-    formDescription.value =''
+    closeModal()
     
 }
 
-addToDoForm.addEventListener('submit', addToDo)
+addToDoForm.addEventListener('submit', (event) =>{
+    addToDo(event)
+
+})

@@ -3,34 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-   <section id="container">
-        <h1 id="title">To do List:</h1>
-        <form id="addToDo">
+    <div class="modalWrapper" id="formModal">
+        <form id="addToDo" class="modalContainer">
+            <i class="ri-close-line closeModal" id="closeModalIcon"></i>
             <label for="toDoTitle">Title</label>
-            <input minlength=5 name="title" placeholder="To do title" id="toDoTitle"/>
-            <label for="toDoDescription">Description</label>
-            <textarea
-            required
-                name="description" 
-            placeholder="To Do Description" 
-            id="toDoDescription"></textarea>
-            <button type="submit" id="addToDoBtn">Add to do</button>
+            <input minlength=5 name="title" placeholder="To do title" id="toDoTitle" required class="formInput"/>
+            <button type="submit" id="addToDoBtn" class="formBtn">Add to do</button>
         </form>
-        <div id="toDoList">
-            <div id="incompleteToDo">
+    </div>
+    
+    <i class="ri-menu-add-line openModal" id="openModalIcon"></i>
+
+    <section id="container" class="listWrapper">
+        
+        <h1 id="title">To do List:</h1>
+
+        <div id="toDoList" class="listContainer">
+            <div class="listSide">
                 <h2>In Progress</h2>
+                <div id="incompleteToDo">
+                </div>
             </div>
-            <br/>
-            <br/>
-            <div id="completedToDo">
+            <div class="listSide">
                 <h2>Done</h2>
+                <div id="completedToDo">
+                
+                </div>  
             </div>
         </div>
-   </section>
+    </section>
 <script src="index.js"></script>
 </body>
 </html>
