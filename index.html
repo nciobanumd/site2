@@ -1,42 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css" rel="stylesheet">
     <title>Document</title>
 </head>
+
 <body>
-    <div class="modalWrapper" id="formModal">
+    <div class="modalWrapper" id="formModal" >
         <form id="addToDo" class="modalContainer">
             <i class="ri-close-line closeModal" id="closeModalIcon"></i>
             <label for="toDoTitle">Title</label>
-            <input minlength=5 name="title" placeholder="To do title" id="toDoTitle" required class="formInput"/>
+            <input minlength=5 name="title" placeholder="To do title" id="toDoTitle" required class="formInput" />
             <button type="submit" id="addToDoBtn" class="formBtn">Add to do</button>
         </form>
     </div>
-    
+
+    <div class="modalWrapper" id="editModal" >
+        <form id="addToDo" class="modalContainer">
+            <i class="ri-close-line closeModal" id="closeEditModalIcon"></i>
+            <label for="toDoTitle">Title</label>
+            <input minlength=5 name="title" placeholder="To do title" id="editTitle" required class="formInput" />
+            <button id="editToDoBtn" class="formBtn">Add to do</button>
+        </form>
+    </div>
+
     <i class="ri-menu-add-line openModal" id="openModalIcon"></i>
 
     <section id="container" class="listWrapper">
         
-        <h1 id="title">To do List:</h1>
+        <h1 id="title">To do list:</h1>
 
         <div id="toDoList" class="listContainer">
             <div class="listSide">
-                <h2>In Progress</h2>
-                <div id="incompleteToDo">
+                <h2>In progress</h2>
+                <div id="incopleteToDo">
                 </div>
-            </div>
+            </div>            
             <div class="listSide">
                 <h2>Done</h2>
                 <div id="completedToDo">
-                
-                </div>  
+
+                </div>
             </div>
         </div>
     </section>
-<script src="index.js"></script>
+
+
+
+
+
+    <script src="index.js"></script>
 </body>
+<style>
+
+
+
+
+
+
+</style>
+
 </html>

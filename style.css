@@ -2,17 +2,16 @@
     height: 32px;
     padding: 4px 8px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center;  
+    justify-content: space-between; 
     width: 150px;
-    
 }
 
 .modalWrapper{
     display: none;
     place-items: center;
     position: absolute;
-    top: 0;
+    top:0;
     left: 0;
     width: 100vw;
     height: 100vh;
@@ -23,8 +22,8 @@
     display: grid;
 }
 
-.modalContainer{
-    position: relative;
+.modalContainer { 
+    position: relative;  
     border: 1px solid gray;
     border-radius: 6px;
     padding: 32px;
@@ -33,58 +32,53 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-
 }
 
-.formInput{
+.formInput {
     height: 32px;
     padding: 4px 8px;
     border: none;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid gray;    
 }
 
-.formInput.focus {
+.formInput:focus {
     outline: none;
-
 }
 
 .formBtn{
     height: 32px;
 }
 
-.closeModal{
+.closeModal {
     font-size: 20px;
     position: absolute;
     top: 32px;
     right: 32px;
     cursor: pointer;
-
 }
 
-.openModal{
+.openModal {
     font-size: 20px;
     cursor: pointer;
 }
 
-.listWrapper{
+.listWrapper {
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .listContainer{
     display: flex;
-
 }
 
-.listSide{
+.listSide {
     width: 250px;
-
 }
 
-.toDoDetails{
-    display: felx;
+.toDoDetails {
+    display: flex;
     gap: 4px;
 }
+

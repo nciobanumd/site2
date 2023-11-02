@@ -1,7 +1,7 @@
 const FizzBuzz = (n) => {
     let arr = []
     for (i = 1; i <= n; i++){
-        if (i % 15 === 0) arr.push("FizzBuzz")
+        if (i % 5 === 0 && i % 3 === 0 ) arr.push("FizzBuzz")
         else if (i % 3 === 0) arr.push("Fizz")
         else if (i % 5 === 0) arr.push("Buzz")
         else arr.push(i.toString())
@@ -23,7 +23,20 @@ const FindMissingNumber = (n) => {
     console.log(missingNumber);
 
 }
-n = [3, 0, 1, 8]
-FindMissingNumber(n)
+/* n = [3, 0, 1, 8]
+FindMissingNumber(n) */
 
+const arr3 = [1, 2, 4, 6, 7]
 
+const FindMissingNumber1 = (list) => {
+    const sorted = list.sort((a, b) => a - b)
+
+    for (let i = 0; i < sorted.length; i++) {
+        if (i !== sorted[i]) {
+            return i
+        }
+    }
+    return list;
+}
+
+/* console.log(FindMissingNumber1(arr3)); */
